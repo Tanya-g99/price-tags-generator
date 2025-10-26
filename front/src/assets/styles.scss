@@ -1,0 +1,205 @@
+/* PrimeVue кастомные цвета на основе #1e3a8a */
+:root {
+  --p-primary-50: #f0f4ff; /* Очень светлый оттенок */
+  --p-primary-100: #e0e7ff; /* Светлый оттенок */
+  --p-primary-200: #c7d2fe; /* Светло-голубой */
+  --p-primary-300: #a5b4fc; /* Голубой */
+  --p-primary-400: #818cf8; /* Средне-голубой */
+  --p-primary-500: #1e3a8a; /* Основной цвет */
+  --p-primary-600: #1a3479; /* Темнее основного */
+  --p-primary-700: #162e68; /* Еще темнее */
+  --p-primary-800: #122857; /* Очень темный */
+  --p-primary-900: #0e2246; /* Самый темный */
+  --p-primary-950: #0a1c35; /* Почти черный */
+
+  --p-primary-color: #1e3a8a;
+  --p-primary-contrast-color: #ffffff;
+  --p-primary-hover-color: #1a3479;
+  --p-primary-active-color: #162e68;
+
+  /* Серые цвета */
+  --p-gray-50: #f9fafb; /* Очень светлый серый */
+  --p-gray-100: #f3f4f6; /* Светлый серый */
+  --p-gray-200: #e5e7eb; /* Светло-серый */
+  --p-gray-300: #d1d5db; /* Серый */
+  --p-gray-400: #9ca3af; /* Средне-серый */
+  --p-gray-500: #6b7280; /* Серый */
+  --p-gray-600: #4b5563; /* Темно-серый */
+  --p-gray-700: #374151; /* Очень темно-серый */
+  --p-gray-800: #1f2937; /* Почти черный */
+  --p-gray-900: #111827; /* Черный */
+
+  /* Danger цвета (красные) */
+  --p-danger-50: #fef2f2;
+  --p-danger-100: #fee2e2;
+  --p-danger-200: #fecaca;
+  --p-danger-300: #fca5a5;
+  --p-danger-400: #f87171;
+  --p-danger-500: #ef4444;
+  --p-danger-600: #dc2626;
+  --p-danger-700: #b91c1c;
+  --p-danger-800: #991b1b;
+  --p-danger-900: #7f1d1d;
+  --p-danger-950: #450a0a;
+
+  /* Success цвета (зеленые) */
+  --p-success-50: #f0fdf4;
+  --p-success-100: #dcfce7;
+  --p-success-200: #bbf7d0;
+  --p-success-300: #86efac;
+  --p-success-400: #4ade80;
+  --p-success-500: #22c55e;
+  --p-success-600: #16a34a;
+  --p-success-700: #15803d;
+  --p-success-800: #166534;
+  --p-success-900: #14532d;
+  --p-success-950: #052e16;
+
+  /* Warning цвета (желтые) */
+  --p-warning-50: #fffbeb;
+  --p-warning-100: #fef3c7;
+  --p-warning-200: #fde68a;
+  --p-warning-300: #fcd34d;
+  --p-warning-400: #fbbf24;
+  --p-warning-500: #f59e0b;
+  --p-warning-600: #d97706;
+  --p-warning-700: #b45309;
+  --p-warning-800: #92400e;
+  --p-warning-900: #78350f;
+  --p-warning-950: #451a03;
+}
+
+/* Принудительное применение цветов к компонентам PrimeVue */
+.p-button {
+  background-color: var(--p-primary-500) !important;
+  border-color: var(--p-primary-500) !important;
+  color: var(--p-primary-contrast-color) !important;
+
+  &:hover {
+    background-color: var(--p-primary-600) !important;
+    border-color: var(--p-primary-600) !important;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2) !important;
+  }
+}
+
+.p-button.p-button-secondary {
+  background-color: var(--p-gray-500) !important;
+  border-color: var(--p-gray-500) !important;
+
+  &:hover {
+    background-color: var(--p-gray-600) !important;
+    border-color: var(--p-gray-600) !important;
+  }
+}
+
+.p-button.p-button-danger {
+  background-color: var(--p-danger-500) !important;
+  border-color: var(--p-danger-500) !important;
+
+  &:hover {
+    background-color: var(--p-danger-600) !important;
+    border-color: var(--p-danger-600) !important;
+  }
+}
+
+.p-button.p-button-success {
+  background-color: var(--p-success-500) !important;
+  border-color: var(--p-success-500) !important;
+
+  &:hover {
+    background-color: var(--p-success-600) !important;
+    border-color: var(--p-success-600) !important;
+  }
+}
+
+.p-button.p-button-warning {
+  background-color: var(--p-warning-500) !important;
+  border-color: var(--p-warning-500) !important;
+
+  &:hover {
+    background-color: var(--p-warning-600) !important;
+    border-color: var(--p-warning-600) !important;
+  }
+}
+
+.p-inputtext:focus {
+  border-color: var(--p-primary-500) !important;
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2) !important;
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+  background-color: var(--p-primary-500) !important;
+  border-color: var(--p-primary-500) !important;
+}
+
+.p-slider .p-slider-handle {
+  background-color: var(--p-primary-500) !important;
+}
+
+.p-slider .p-slider-range {
+  background-color: var(--p-primary-500) !important;
+}
+
+.p-colorpicker-preview {
+  border: 1px solid var(--p-gray-300) !important;
+}
+
+/* Основные переменные */
+$primary-color: #1e3a8a;
+$secondary-color: #f3f4f6;
+$text-color: #333;
+$border-radius: 8px;
+$shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+/* Сброс стилей */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $secondary-color;
+  color: $text-color;
+}
+
+/* Меню */
+header {
+  background-color: $primary-color;
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  nav a {
+    color: white;
+    margin-left: 16px;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Главный контейнер */
+main {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 16px;
+}

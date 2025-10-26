@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150">
+    <rect width="300" height="150" fill="white" stroke="black" rx="12" ry="12" />
+
+    <!-- Название товара -->
+    <text id="productName" x="10" y="40" font-family="DejaVu Sans, Arial" font-size="20"
+        fill="black">
+        Название продукта
+    </text>
+
+    <!-- Цена -->
+    <text id="price" x="10" y="110" font-family="DejaVu Sans, Arial" font-size="30"
+        font-weight="bold" fill="black">
+        Цена ₽
+    </text>
+
+    <!-- Логотип магазина -->
+    <image id="storeLogo" x="230" y="10" width="60" height="40" preserveAspectRatio="xMaxYMid meet"
+        href="/templates/assets/logo.svg" />
+
+    <!-- Штрихкод -->
+    <image id="barcode" x="210" y="60" width="80" height="80" preserveAspectRatio="xMaxYMid meet"
+        href="/templates/assets/qr-code.svg" />
+
+</svg>
+  

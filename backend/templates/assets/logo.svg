@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 70 40">
+    <!-- Пунктирная рамка -->
+    <rect x="0" y="0" width="70" height="40" fill="none" stroke="#888" stroke-width="2"
+        stroke-dasharray="4,4" rx="4" ry="4" />
+
+    <!-- Текст по центру -->
+    <text x="35" y="20" font-size="10" fill="#888" text-anchor="middle" alignment-baseline="middle">
+        Магазин
+    </text>
+</svg>
