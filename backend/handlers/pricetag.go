@@ -91,7 +91,7 @@ func AddPriceTag(w http.ResponseWriter, r *http.Request) {
 		ProductID:     productID,
 		ProductName:   productName,
 		Price:         productPrice,
-		PriceTagImage: "http://localhost:8080/" + svgPath,
+		PriceTagImage: svgPath,
 	}
 
 	priceTags = append(priceTags, pt)

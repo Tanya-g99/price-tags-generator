@@ -1,7 +1,7 @@
 import type { IProduct } from '@/types/models';
 
 export class ProductService {
-  private baseUrl = 'http://localhost:8080/api/products';
+  private baseUrl = `${import.meta.env.VITE_API_URL}/api/products`;
 
   async addProduct(product: {
     name: string;

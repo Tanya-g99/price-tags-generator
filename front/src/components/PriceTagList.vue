@@ -4,7 +4,10 @@
       <h3>{{ tag.productName }} {{ tag.price }} ₽</h3>
 
       <div v-if="tag.priceTagImage" class="pricetag-image">
-        <img :src="tag.priceTagImage" alt="Сформированный ценник" />
+        <img
+          :src="`${API_URL}/${tag.priceTagImage}`"
+          alt="Сформированный ценник"
+        />
         <!-- {{ tag.priceTagImage }} -->
       </div>
 
@@ -14,9 +17,11 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
-import { storeToRefs } from 'pinia';
 import { usePriceTagStore } from '@/stores/priceTagStore';
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const store = usePriceTagStore();
 const { priceTags } = storeToRefs(store);

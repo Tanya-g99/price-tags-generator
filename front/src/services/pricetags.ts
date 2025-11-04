@@ -1,7 +1,7 @@
 import type { IPriceTag } from '@/types/models';
 
 export class PriceTagService {
-  private baseUrl = 'http://localhost:8080/api/pricetags';
+  private baseUrl = `${import.meta.env.VITE_API_URL}/api/pricetags`;
 
   async generateBarcode(data: {
     name: string;
