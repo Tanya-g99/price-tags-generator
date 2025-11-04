@@ -82,16 +82,38 @@ func AddPriceTag(w http.ResponseWriter, r *http.Request) {
 	svgContent = strings.ReplaceAll(svgContent, "/templates/assets/qr-code.svg", qrBase64)
 
 	// Сохраняем SVG во временный файл
-	svgPath := filepath.Join("uploads", fmt.Sprintf("pricetag_%s.svg", nextPriceTagID))
-	os.WriteFile(svgPath, []byte(svgContent), 0644)
-	// fmt.Println(svgContent)
+	exePath, err := os.Executable()
+	if err != nil {
+		log.Fatal(err)
+	}
+	baseDir := filepath.Dir(exePath)
 
+	// если программа запущена из временного каталога (go run)
+	if strings.Contains(baseDir, os.TempDir()) {
+		wd, _ := os.Getwd()
+		baseDir = wd
+	}
+
+	uploadDir := filepath.Join(baseDir, "uploads")
+	os.MkdirAll(uploadDir, 0755)
+
+	svgFile := fmt.Sprintf("pricetag_%s.svg", nextPriceTagID)
+	svgPath := filepath.Join(uploadDir, svgFile)
+
+	err = os.WriteFile(svgPath, []byte(svgContent), 0644)
+	if err != nil {
+		log.Println("❌ Ошибка при сохранении SVG:", err)
+	} else {
+		log.Println("✅ SVG сохранён в:", svgPath)
+	}
+
+	// путь, который отдаётся клиенту
 	pt := models.PriceTag{
 		ID:            nextPriceTagID,
 		ProductID:     productID,
 		ProductName:   productName,
 		Price:         productPrice,
-		PriceTagImage: svgPath,
+		PriceTagImage: "uploads/" + svgFile,
 	}
 
 	priceTags = append(priceTags, pt)
