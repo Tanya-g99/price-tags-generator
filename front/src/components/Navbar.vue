@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Price Tags App</h1>
+    <h1>Price Tags</h1>
     <nav>
       <router-link to="/products" active-class="active">Товары</router-link>
       <router-link to="/pricetags" active-class="active">Ценники</router-link>
