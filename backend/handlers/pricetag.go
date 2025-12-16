@@ -7,7 +7,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"image"
+	"image/gif"
+	"image/jpeg"
 	"image/png"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -62,13 +65,63 @@ func AddPriceTag(w http.ResponseWriter, r *http.Request) {
 
 	// ====== ЛОГОТИП ======
 	var logoBase64 string
-	file, _, err := r.FormFile("storeLogo")
+	file, fileHeader, err := r.FormFile("storeLogo")
 	if err == nil {
 		defer file.Close()
-		var buf bytes.Buffer
-		img, _, _ := image.Decode(file)
-		png.Encode(&buf, img)
-		logoBase64 = "data:image/png;base64," + base64.StdEncoding.EncodeToString(buf.Bytes())
+
+		// Читаем первые байты для определения типа файла
+		fileBytes, err := io.ReadAll(file)
+		if err != nil {
+			log.Println("Ошибка чтения файла логотипа:", err)
+			logoBase64 = ""
+		} else {
+			sampleSize := 512
+			if len(fileBytes) < sampleSize {
+				sampleSize = len(fileBytes)
+			}
+			contentType := http.DetectContentType(fileBytes[:sampleSize])
+			fileName := fileHeader.Filename
+			fileExt := strings.ToLower(filepath.Ext(fileName))
+
+			// Определяем MIME-тип по расширению или содержимому
+			var mimeType string
+			if strings.Contains(contentType, "svg") || fileExt == ".svg" {
+				// SVG - обрабатываем как текст
+				mimeType = "image/svg+xml"
+				logoBase64 = "data:" + mimeType + ";base64," + base64.StdEncoding.EncodeToString(fileBytes)
+			} else {
+				// Растровые изображения - декодируем и кодируем в исходном формате
+				reader := bytes.NewReader(fileBytes)
+				img, format, err := image.Decode(reader)
+				if err != nil {
+					log.Println("Ошибка декодирования изображения:", err)
+					logoBase64 = ""
+				} else {
+					var buf bytes.Buffer
+					switch format {
+					case "jpeg", "jpg":
+						mimeType = "image/jpeg"
+						err = jpeg.Encode(&buf, img, &jpeg.Options{Quality: 90})
+					case "png":
+						mimeType = "image/png"
+						err = png.Encode(&buf, img)
+					case "gif":
+						mimeType = "image/gif"
+						err = gif.Encode(&buf, img, &gif.Options{})
+					default:
+						// Если формат не поддерживается, конвертируем в PNG
+						mimeType = "image/png"
+						err = png.Encode(&buf, img)
+					}
+					if err != nil {
+						log.Println("Ошибка кодирования изображения:", err)
+						logoBase64 = ""
+					} else {
+						logoBase64 = "data:" + mimeType + ";base64," + base64.StdEncoding.EncodeToString(buf.Bytes())
+					}
+				}
+			}
+		}
 	} else {
 		logoBase64 = "" // можно поставить placeholder
 	}
