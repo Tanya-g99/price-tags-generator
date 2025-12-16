@@ -16,6 +16,16 @@ export default defineConfig({
     },
   },
   plugins: [vue()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue', 'vue-router', 'pinia'],
+          primevue: ['primevue'],
+        },
+      },
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {
